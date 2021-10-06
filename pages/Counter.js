@@ -1,8 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import RoundButton from '../components/RoundButton';
 import {useSelector, useDispatch} from 'react-redux';
-import {decrement, increment, updateIncrement} from '../redux/reducers/counter';
+import {
+  decrement as decrementAction,
+  increment as incrementAction,
+  updateIncrement as updateIncrementAction,
+} from '../redux/reducers/counter';
 
 const App = () => {
   const {count, increment} = useSelector(state => ({
@@ -11,11 +15,11 @@ const App = () => {
   }));
   const dispatch = useDispatch();
 
-  const handleIncrement = () => dispatch(increment());
-  const handleDecrement = () => dispatch(decrement());
+  const handleIncrement = () => dispatch(incrementAction());
+  const handleDecrement = () => dispatch(decrementAction());
 
   const handleUpdateIncrement = newIncrement =>
-    dispatch(updateIncrement(Number(newIncrement)));
+    dispatch(updateIncrementAction(Number(newIncrement)));
 
   return (
     <View style={styles.screenContainer}>
